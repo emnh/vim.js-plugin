@@ -1,5 +1,9 @@
 # vim.js-plugin
-Chrome/Firefox plugin based on vim.js
+Chrome/Firefox plugin based on vim.js.
+
+Replaces the biggest textarea or text box per page with vim.js.
+
+There is only support for one vim instance per page because of the way emscripten works (there does exist multiple heap experimental support, but I haven't tried it).
 
 # Alternatives
  - [Windows only: Text Editor Anywhere](http://www.listary.com/text-editor-anywhere) (Works with CodeMirror.)
