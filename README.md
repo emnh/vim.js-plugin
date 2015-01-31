@@ -8,3 +8,4 @@ There is only support for one vim instance per page because of the way emscripte
 # Alternatives
  - [Windows only: Text Editor Anywhere](http://www.listary.com/text-editor-anywhere) (Works with CodeMirror.)
  - [Firefox plugin: It's all text](https://addons.mozilla.org/en-US/firefox/addon/its-all-text/?src=ss)
+ - [Chrome alternatives to It's all text](http://superuser.com/questions/261689/its-all-text-for-chrome)
