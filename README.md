@@ -11,6 +11,7 @@ Therefore textareas are editable as files in /root, with names
  - /root/codemirror1
  - ...
 
+It currently doesn't hide the original element, so you can see whether it's updating the content.
 TODO: Support replacing Ace editor.
 
 # Alternatives
