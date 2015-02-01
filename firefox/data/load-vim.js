@@ -4,6 +4,7 @@ function main() {
   var i;
   var textareas = document.getElementsByTagName(tag);
   var codemirrors = document.getElementsByClassName("CodeMirror");
+  var aceEditors = document.getElementsByClassName("ace_editor");
   var hasTextArea = (textareas.length > 0);
   if (!hasTextArea) {
     return;
@@ -11,25 +12,45 @@ function main() {
   //console.log("textarea size", textarea.offsetWidth, textarea.offsetHeight);
   var biggest = null;
   var biggestSize = 0;
+  var biggestName = "";
   var size = 0;
   var codemirror;
   var insertBeforeNode;
+  var filename = "";
+
+  // Find the biggest editor on the page and replace it.
+  // We only support one vim editor per page, that's why.
   for (i = 0; i < textareas.length; i++) {
+    filename = "textarea" + i;
     size = textareas[i].offsetWidth * textareas[i].offsetHeight;
     if (size > biggestSize) {
       biggest = textareas[i];
       biggestSize = size;
+      biggestName = filename;
     }
   }
   for (i = 0; i < codemirrors.length; i++) {
+    filename = "codemirror" + i;
     codemirror = codemirrors[i];
     size = codemirror.offsetWidth * codemirror.offsetHeight;
     if (size > biggestSize) {
       biggest = codemirror;
       biggestSize = size;
+      biggestName = filename;
+    }
+  }
+  for (i = 0; i < aceEditors.length; i++) {
+    filename = "ace" + i;
+    size = aceEditors[i].offsetWidth * aceEditors[i].offsetHeight;
+    if (size > biggestSize) {
+      biggest = aceEditors[i];
+      biggestSize = size;
+      biggestName = filename;
     }
   }
   insertBeforeNode = biggest;
+  insertBeforeNode.classList.add("vimInsertNode");
+  insertBeforeNode.classList.add("vimFileName_" + biggestName);
   window.shouldLoadVim = true;
   console.log("after");
   var div = document.createElement("div");

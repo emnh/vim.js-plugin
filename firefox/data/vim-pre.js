@@ -33,14 +33,24 @@ var Module = {
         codemirror.classList.add(tname);
 
         data = codemirror.CodeMirror.getValue();
-        console.log("cvalue", data);
         window.FS.writeFile("/root/codemirror" + i, data);
       }
-      if (codemirrors.length > 0) {
-        window.Module.arguments = ['/root/codemirror0'];
+
+      // Write all Ace editor values to Emscripten file system
+      var aceEditors = unsafeWindow.document.getElementsByClassName("ace_editor");
+      var aceEditor;
+      //var script;
+      for (i = 0; i < aceEditors.length; i++) {
+        aceEditor = unsafeWindow.ace.edit(aceEditors[i]);
+        tname = "vimace" + i;
+        aceEditors[i].classList.add(tname);
+
+        data = aceEditor.getValue();
+        window.FS.writeFile("/root/ace" + i, data);
       }
 
-      // Add autocommands to vimrc to write back buffer to DOM
+
+      // Add autocommands to vimrc to write back textarea buffer to DOM
       var vimrc = window.FS.readFile('/usr/local/share/vim/vimrc', { encoding: 'utf8' });
       for (i = 0; i < textareas.length; i++) {
         tname = "vimtextarea" + i;
@@ -53,6 +63,8 @@ var Module = {
         \\ p.value = data; \n\
         ";
       }
+
+      // Add autocommands to vimrc to write back codemirror buffer to DOM
       for (i = 0; i < codemirrors.length; i++) {
         tname = "vimcodemirror" + i;
         // slash at the end escapes JS newline
@@ -63,8 +75,21 @@ var Module = {
         \\ var p = unsafeWindow.document.getElementsByClassName(\"" + tname + "\")[0]; \n\
         \\ p.CodeMirror.setValue(data); \n\
         ";
-
       }
+
+      // Add autocommands to vimrc to write back Ace buffer to DOM
+      for (i = 0; i < aceEditors.length; i++) {
+        tname = "vimace" + i;
+        // slash at the end escapes JS newline
+        // slash at the front escapes vimrc newline
+        vimrc += "\
+        au BufWritePost /root/ace" + i + " : \n\
+        \\ silent !var data = FS.readFile(\"%\", { encoding: \"utf8\" } ); \n\
+        \\ var p = unsafeWindow.document.getElementsByClassName(\"" + tname + "\")[0]; \n\
+        \\ unsafeWindow.ace.edit(p).setValue(data); \n\
+        ";
+      }
+
       window.FS.writeFile('/usr/local/share/vim/vimrc', vimrc);
 
     }
@@ -89,5 +114,16 @@ var Module = {
     }
   },
 };
+var insertNode = document.getElementsByClassName("vimInsertNode")[0];
+var i;
+var filename;
+for (i = 0; i < insertNode.classList.length; i++) {
+  if (insertNode.classList[i].indexOf("vimFileName_") !== -1) {
+    filename = insertNode.classList[i].replace("vimFileName_", "/root/");
+    console.log("filename", filename);
+    Module.arguments = [ filename ];
+    break;
+  }
+}
 window.Module = Module;
 
