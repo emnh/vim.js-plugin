@@ -10,41 +10,15 @@ function main() {
   }
   var textarea = elements[0];
   console.log("textarea size", textarea.offsetWidth, textarea.offsetHeight);
-  var hasBigTextArea = textarea.offsetWidth * textarea.offsetHeight > 100*24;
+  /*var hasBigTextArea = textarea.offsetWidth * textarea.offsetHeight > 100*24;
   if (!hasBigTextArea) {
     return;
-  }
+  }*/
   for (i = 0; i < elements.length; i++) {
     console.log("element", elements[i]);
   }
   window.shouldLoadVim = true;
   console.log("after");
-  var Module = {
-    noInitialRun: false,
-    noExitRuntime: true,
-    arguments: ['/usr/local/share/vim/example.js'],
-    preRun: [ function() { window.vimjs.pre_run(); } ],
-    postRun: [],
-    print: function() { 
-      if (console.group !== undefined) {
-        console.group.apply(console, arguments); 
-        console.groupEnd();
-      } else {
-        // IE
-        console.log(arguments);
-      }
-    },
-    printErr: function() { 
-      if (console.group !== undefined) {
-        console.group.apply(console, arguments); 
-        console.groupEnd();
-      } else {
-        // IE
-        console.log(arguments);
-      }
-    },
-  };
-  window.Module = Module;
   var div = document.createElement("div");
   textarea.parentNode.insertBefore(div, textarea);
   console.log("inserted before", div, textarea);
@@ -61,7 +35,7 @@ function main() {
         </div>';
   var div2 = document.createElement("div");
   textarea.parentNode.insertBefore(div2, textarea);
-  var baseUrl = "http://192.168.100.128:8000/";
+  var baseUrl = "http://coolwanglu.github.io/vim.js/experimental/";
   div2.innerHTML = '\
     <audio id="vimjs-beep" src="' + baseUrl + 'drip.ogg"></audio>\
     <input id="vimjs-file" class="vimjs-invisible" type="file">\

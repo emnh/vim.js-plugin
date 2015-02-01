@@ -33,7 +33,10 @@ pageMod.PageMod({
     worker.port.on("loadVim", function() {
       console.log("attaching vim");
       worker.tab.attach({
-        contentScriptFile: self.data.url("vim.js")
+        contentScriptFile: [
+          self.data.url("vim-pre.js"),
+          self.data.url("vim.js")
+        ]
       });
     });
   }
