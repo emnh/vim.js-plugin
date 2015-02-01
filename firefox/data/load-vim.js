@@ -2,26 +2,39 @@
 function main() {
   var tag = "textarea";
   var i;
-  var elements = document.getElementsByTagName(tag);
-  console.log("helo from page mod");
-  var hasTextArea = (elements.length > 0);
+  var textareas = document.getElementsByTagName(tag);
+  var codemirrors = document.getElementsByClassName("CodeMirror");
+  var hasTextArea = (textareas.length > 0);
   if (!hasTextArea) {
     return;
   }
-  var textarea = elements[0];
-  console.log("textarea size", textarea.offsetWidth, textarea.offsetHeight);
-  /*var hasBigTextArea = textarea.offsetWidth * textarea.offsetHeight > 100*24;
-  if (!hasBigTextArea) {
-    return;
-  }*/
-  for (i = 0; i < elements.length; i++) {
-    console.log("element", elements[i]);
+  //console.log("textarea size", textarea.offsetWidth, textarea.offsetHeight);
+  var biggest = null;
+  var biggestSize = 0;
+  var size = 0;
+  var codemirror;
+  var insertBeforeNode;
+  for (i = 0; i < textareas.length; i++) {
+    size = textareas[i].offsetWidth * textareas[i].offsetHeight;
+    if (size > biggestSize) {
+      biggest = textareas[i];
+      biggestSize = size;
+    }
   }
+  for (i = 0; i < codemirrors.length; i++) {
+    codemirror = codemirrors[i];
+    size = codemirror.offsetWidth * codemirror.offsetHeight;
+    if (size > biggestSize) {
+      biggest = codemirror;
+      biggestSize = size;
+    }
+  }
+  insertBeforeNode = biggest;
   window.shouldLoadVim = true;
   console.log("after");
   var div = document.createElement("div");
-  textarea.parentNode.insertBefore(div, textarea);
-  console.log("inserted before", div, textarea);
+  insertBeforeNode.parentNode.insertBefore(div, insertBeforeNode);
+  console.log("inserted before", div, insertBeforeNode);
   div.innerHTML = '\
         <div id="vimjs-container" class="container">\
           <canvas id="vimjs-canvas"></canvas>\
@@ -34,7 +47,7 @@ function main() {
           </div>\
         </div>';
   var div2 = document.createElement("div");
-  textarea.parentNode.insertBefore(div2, textarea);
+  insertBeforeNode.parentNode.insertBefore(div2, insertBeforeNode);
   var baseUrl = "http://coolwanglu.github.io/vim.js/experimental/";
   div2.innerHTML = '\
     <audio id="vimjs-beep" src="' + baseUrl + 'drip.ogg"></audio>\
@@ -52,12 +65,6 @@ function main() {
         </div>\
       </div>\
     </div>';
-  //div2.innerHTML += "<script src=\"" + self.data.url("vim.js") + "\"></script>";
-  var script = document.createElement("script");
-  //script.src = "http://coolwanglu.github.io/vim.js/experimental/vim.js";
-  script.src = "http://192.168.100.128:8000/vim.js";
-  script.async = true;
-  //document.body.appendChild(script);
 }
 self.port.on("loadVim", function(url) {
   console.log("vim url", url);

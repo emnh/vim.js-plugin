@@ -1,14 +1,17 @@
 # vim.js-plugin
 Chrome/Firefox plugin based on vim.js.
 
-Replaces the first textarea or text box per page with vim.js.
+Replaces the biggest textarea or CodeMirror per page with vim.js.
 There is only support for one vim instance per page because of the way emscripten works (there does exist multiple heap experimental support, but I haven't tried it).
 Therefore textareas are editable as files in /root, with names
  - /root/textarea0
  - /root/textarea1
  - ...
+ - /root/codemirror0
+ - /root/codemirror1
+ - ...
 
-TODO: Detect hidden textarea of CodeMirror or Ace editor and replace editor instead.
+TODO: Support replacing Ace editor.
 
 # Alternatives
  - [Windows only: Text Editor Anywhere](http://www.listary.com/text-editor-anywhere) (Works with CodeMirror.)
