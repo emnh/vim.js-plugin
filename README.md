@@ -1,5 +1,7 @@
 # vim.js-plugin
-Firefox plugin based on [vim.js](http://coolwanglu.github.io/vim.js/experimental/vim.html).
+[Firefox
+plugin](https://github.com/emnh/vim.js-plugin/blob/master/firefox/vimjs-firefox.xpi)
+based on [vim.js](http://coolwanglu.github.io/vim.js/experimental/vim.html).
 
 Replaces the biggest textarea, CodeMirror or Ace Editor per page with
 [vim.js](http://coolwanglu.github.io/vim.js/experimental/vim.html).

@@ -41,12 +41,16 @@ var Module = {
       var aceEditor;
       //var script;
       for (i = 0; i < aceEditors.length; i++) {
-        aceEditor = unsafeWindow.ace.edit(aceEditors[i]);
-        tname = "vimace" + i;
-        aceEditors[i].classList.add(tname);
+        if (unsafeWindow.ace.edit !== undefined) {
+          aceEditor = unsafeWindow.ace.edit(aceEditors[i]);
+          tname = "vimace" + i;
+          aceEditors[i].classList.add(tname);
 
-        data = aceEditor.getValue();
-        window.FS.writeFile("/root/ace" + i, data);
+          data = aceEditor.getValue();
+          window.FS.writeFile("/root/ace" + i, data);
+        } else {
+          console.log("ace.edit was undefined");
+        }
       }
 
 
