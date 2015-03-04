@@ -48,11 +48,14 @@ function main() {
       biggestName = filename;
     }
   }
+  if (biggest == null) {
+    return;
+  }
   insertBeforeNode = biggest;
   insertBeforeNode.classList.add("vimInsertNode");
   insertBeforeNode.classList.add("vimFileName_" + biggestName);
   window.shouldLoadVim = true;
-  console.log("after");
+  console.log("will load vim");
   var div = document.createElement("div");
   insertBeforeNode.parentNode.insertBefore(div, insertBeforeNode);
   console.log("inserted before", div, insertBeforeNode);
@@ -69,7 +72,7 @@ function main() {
         </div>';
   var div2 = document.createElement("div");
   insertBeforeNode.parentNode.insertBefore(div2, insertBeforeNode);
-  var baseUrl = "http://coolwanglu.github.io/vim.js/experimental/";
+  var baseUrl = "http://coolwanglu.github.io/vim.js/emterpreter/";
   div2.innerHTML = '\
     <audio id="vimjs-beep" src="' + baseUrl + 'drip.ogg"></audio>\
     <input id="vimjs-file" class="vimjs-invisible" type="file">\

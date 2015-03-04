@@ -1,2 +1,3 @@
 #!/bin/bash
-cfx xpi ; wget --post-file=vimjs-firefox.xpi http://192.168.100.1:8888/
+cfx xpi
+wget --post-file=vimjs-emnh.xpi http://192.168.100.1:8888/

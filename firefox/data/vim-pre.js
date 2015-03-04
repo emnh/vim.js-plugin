@@ -1,9 +1,17 @@
-/*global clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false, self: false, unsafeWindow: false */
+/*global clearInterval: false, clearTimeout: false, document: false, event:
+ * false, frames: false, history: false, Image: false, location: false, name:
+ * false, navigator: false, Option: false, parent: false, screen: false,
+ * setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false,
+ * self: false, unsafeWindow: false */
+
+//var self = require("sdk/self");
+
 var Module = {
   noInitialRun: false,
   noExitRuntime: true,
   //arguments: ['/usr/local/share/vim/example.js'],
   arguments: ['/root/textarea0'],
+  memoryInitializerPrefixURL: 'http://coolwanglu.github.io/vim.js/emterpreter/',
   preRun: [
     //function() { window.vimjs.pre_run(); },
     function() {
@@ -130,4 +138,12 @@ for (i = 0; i < insertNode.classList.length; i++) {
   }
 }
 window.Module = Module;
-
+/*
+unsafeWindow.Module = Module;
+var script = document.createElement("script");
+script.async = true;
+var baseUrl = "http://coolwanglu.github.io/vim.js/emterpreter/";
+script.src = baseUrl + "vim.js";
+var head = document.head || document.getElementsByTagName("head")[0];
+head.appendChild(script);
+*/

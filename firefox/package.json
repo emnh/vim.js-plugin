@@ -1,9 +1,12 @@
 {
-  "name": "vimjs-firefox",
-  "title": "vim.js-firefox",
+  "name": "vimjs-emnh",
+  "title": "Vim.js Extension",
   "id": "jid1-vDMjxQ9FiHwd9g",
-  "description": "a basic add-on",
-  "author": "",
+  "description": "Experimental Vim.js compiled with Emscripten",
+  "author": "Eivind Magnus Hvidevold",
   "license": "MPL 2.0",
-  "version": "0.3"
+  "version": "0.5",
+  "permissions": {
+    "cross-domain-content": [ "http://coolwanglu.github.io" ]
+  }
 }

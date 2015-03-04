@@ -36,6 +36,7 @@ pageMod.PageMod({
         contentScriptFile: [
           self.data.url("vim-pre.js"),
           self.data.url("vim.js")
+          //"http://coolwanglu.github.io/vim.js/emterpreter/vim.js"
         ]
       });
     });
