@@ -4,14 +4,13 @@
  * setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false,
  * self: false, unsafeWindow: false */
 
-//var self = require("sdk/self");
-
 var Module = {
   noInitialRun: false,
   noExitRuntime: true,
   //arguments: ['/usr/local/share/vim/example.js'],
   arguments: ['/root/textarea0'],
-  memoryInitializerPrefixURL: 'http://coolwanglu.github.io/vim.js/emterpreter/',
+  memoryInitializerPrefixURL: 'http://emnh.github.io/vim.js-plugin-host/vim.js/',
+  //memoryInitializerPrefixURL: window.resourceURL, // set by load-vim.js
   preRun: [
     //function() { window.vimjs.pre_run(); },
     function() {

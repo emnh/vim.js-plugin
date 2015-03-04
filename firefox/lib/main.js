@@ -9,7 +9,12 @@ function handleClick(state) {
   console.log(state);
   //tabs.open("https://www.mozilla.org/");
   require("sdk/tabs").activeTab.attach({
-    contentScriptFile: self.data.url("load-vim.js")
+    contentScriptFile: [
+      self.data.url("load-vim.js"),
+      self.data.url("vim-pre.js"),
+      self.data.url("vim.js")
+    ],
+    contentStyleFile: self.data.url("vim.css")
   });
 }
 
@@ -29,7 +34,7 @@ pageMod.PageMod({
   contentScriptFile: self.data.url("load-vim.js"),
   contentStyleFile: self.data.url("vim.css"),
   onAttach: function(worker) {
-    worker.port.emit("loadVim");
+    worker.port.emit("loadVim", self.data.url(""));
     worker.port.on("loadVim", function() {
       console.log("attaching vim");
       worker.tab.attach({

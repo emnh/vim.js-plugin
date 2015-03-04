@@ -7,6 +7,6 @@
   "license": "MPL 2.0",
   "version": "0.5",
   "permissions": {
-    "cross-domain-content": [ "http://coolwanglu.github.io" ]
+    "cross-domain-content": [ "http://emnh.github.io" ]
   }
 }

@@ -72,7 +72,7 @@ function main() {
         </div>';
   var div2 = document.createElement("div");
   insertBeforeNode.parentNode.insertBefore(div2, insertBeforeNode);
-  var baseUrl = "http://coolwanglu.github.io/vim.js/emterpreter/";
+  var baseUrl = "http://emnh.github.io/vim.js-plugin-host/vim.js/";
   div2.innerHTML = '\
     <audio id="vimjs-beep" src="' + baseUrl + 'drip.ogg"></audio>\
     <input id="vimjs-file" class="vimjs-invisible" type="file">\
@@ -92,6 +92,7 @@ function main() {
 }
 self.port.on("loadVim", function(url) {
   console.log("vim url", url);
+  window.resourceURL = url;
   if (window.shouldLoadVim) {
     console.log("loading vim");
     self.port.emit("loadVim");
