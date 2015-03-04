@@ -5,7 +5,7 @@
   "description": "Experimental Vim.js compiled with Emscripten",
   "author": "Eivind Magnus Hvidevold",
   "license": "MPL 2.0",
-  "version": "0.5",
+  "version": "0.6",
   "permissions": {
     "cross-domain-content": [ "http://emnh.github.io" ]
   }
